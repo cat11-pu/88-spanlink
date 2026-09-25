@@ -1,0 +1,12 @@
+{
+  "bad_span_code": "E_BAD_SPAN",
+  "budget": 4,
+  "spans": [
+    {"id": "s0", "start": 0, "end": 10},
+    {"id": "s1", "start": 1, "end": 5},
+    {"id": "s2", "start": 2, "end": 3},
+    {"id": "s3", "start": 6, "end": 9},
+    {"id": "s4", "start": 12, "end": 14},
+    {"id": "s5", "start": 13, "end": 18}
+  ]
+}
