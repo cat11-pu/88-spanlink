@@ -3,8 +3,11 @@ import { infer } from "./infer.js";
 import { build } from "./tree.js";
 
 export function render(spec) {
-  const guessed = infer(spec.spans || []);
-  const tree = build(spec.spans || [], guessed.parents, spec.budget);
+  const spans = spec.spans || [];
+  const guessed = infer(spans);
+  const again = infer(spans); // 重复推断校验幂等：同一输入必须给出同一关系
+  const tree = build(spans, guessed.parents, spec.budget);
   return { parents: guessed.parents, orphans: guessed.orphans, roots: tree.roots,
-           depth: tree.depth, kept: tree.kept, dropped: tree.dropped, idempotent: true };
+           depth: tree.depth, kept: tree.kept, dropped: tree.dropped,
+           idempotent: JSON.stringify(guessed.parents) === JSON.stringify(again.parents) };
 }
